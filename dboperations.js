@@ -11,20 +11,6 @@ async function getNotifications() {
     }
 }
 
-async function addNotification(notification) {
-    try {
-        let pool = await sql.connect(config);
-        let insertNotification = await pool.request()
-            .input('Donation_Date', sql.Date)
-            .input('Donor_Name', sql.NVarChar)
-            .input('Donation_Amount', sql.Money)
-            .execute('InsertNotification');
-        return insertNotification.recordsets;
-    } catch (error) {
-        console.log(error);
-    }
-}
-
 module.exports = {
     getNotifications: getNotifications
 }
